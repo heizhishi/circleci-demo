@@ -28,7 +28,7 @@ jobs:
           command: npm run build
       - run:
           name: Prepare shell commands
-          command: chmod +x scipts/deploy.sh
+          command: chmod +x scripts/deploy.sh
       - run:
           name: Run deploy to github pages
-          command: ./sciprt/deploy.sh
+          command: ./scriprt/deploy.sh
