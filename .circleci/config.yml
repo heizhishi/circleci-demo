@@ -11,11 +11,24 @@ jobs:
           fingerprints: 
             - "75:94:46:ce:62:57:bc:8b:9d:73:12:91:c4:9f:a2:69"
       - checkout
+      - restore_cache: 
+          keys: 
+            - dependencies_ha
       - run: echo "A first hello"
       - run: npm -v
       - run: 
           name: Install
           command: npm install
+      - save_cache: 
+          paths:
+            - node_modules
+          key: dependencies_ha
       - run: 
           name: Build
           command: npm run build
+      - run:
+          name: Prepare shell commands
+          command: chmod +x scipts/deploy.sh
+      - run:
+          name: Run deploy to github pages
+          command: ./sciprt/deploy.sh
